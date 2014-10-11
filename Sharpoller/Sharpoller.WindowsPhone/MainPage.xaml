@@ -1,0 +1,70 @@
+﻿<Page
+    x:Class="Sharpoller.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Sharpoller"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid Name="grid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Button Click="Command_Click" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" Content="Power" Tag="On" Background="#FFC54B4B"></Button>
+            <Button Click="Command_Click" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" Content="Menu" Tag="Menu"></Button>
+            <Button Click="Command_Click" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" Content="Smart" Tag="Smart"></Button>
+            <Button Click="Command_Click" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Content="^" Tag="Up"></Button>
+            <Button Click="Command_Click" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" Content="&lt;" Tag="Left"></Button>
+            <Button Click="Command_Click" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" Content="Enter" Tag="Enter"></Button>
+            <Button Click="Command_Click" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" Content="&gt;" Tag="Right"></Button>
+            <Button Click="Command_Click" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" Content="Exit" Tag="Exit"></Button>
+            <Button Click="Command_Click" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" Content="^" Tag="Down" RenderTransformOrigin="0.5,0.5">
+                <Button.RenderTransform>
+                    <CompositeTransform ScaleY="-1"/>
+                </Button.RenderTransform>
+            </Button>
+            <Button Click="Command_Click" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" Content="Return" Tag="Return"></Button>
+            
+            <GridView Name="view" IsItemClickEnabled="True"
+                      Grid.ColumnSpan="3" Grid.Row="4">
+                <GridView.ItemContainerStyle>
+                    <Style TargetType="FrameworkElement">
+                        <Setter Property="Margin" Value="0 0 20 0"/>
+                    </Style>
+                </GridView.ItemContainerStyle>
+            </GridView>
+        </Grid>
+
+        <!--<StackPanel Orientation="Vertical">
+            -->
+        <!--<Button x:Name="ConnectButton" Content="Connect" Click="Connect_Click" FontSize="30" HorizontalAlignment="Center"/>-->
+        <!--
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Command:" FontSize="24" VerticalAlignment="Center"/>
+                <TextBox x:Name="SendText" Text="VOLM010 " FontSize="24" VerticalAlignment="Center"  />
+                <Button Content="Send" Click="Send_Click" FontSize="24" VerticalAlignment="Center" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="On" Click="PowerOn_Click" FontSize="30"/>
+                <Button Content="Off" Click="PowerOff_Click" FontSize="30"/>
+                <Button Content="Netflix" Click="Netflix_Click" FontSize="30"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Mute" Click="Mute_Click" FontSize="30"/>
+            </StackPanel>
+            <Button HorizontalAlignment="Center" x:Name="SpeakButton" Content="Speak" Click="StartRecognizing_Click" FontSize="30" Margin="145,0,146,0"/>
+        </StackPanel>-->
+    </Grid>
+</Page>
