@@ -9,14 +9,17 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <Grid Name="grid">
+        <Grid Name="grid" Background="#FF0A4253">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="70"></RowDefinition>
+                <RowDefinition Height="70"></RowDefinition>
+                <RowDefinition Height="70"></RowDefinition>
+                <RowDefinition Height="70"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
@@ -32,27 +35,28 @@
             </Grid>
             <Button Click="Command_Click" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" Content="Menu" Tag="Menu"></Button>
             <Button Click="Command_Click" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" Content="Smart" Tag="Smart"></Button>
-            <Button Click="Command_Click" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Content="^" Tag="Up"></Button>
+            <Button Click="Command_Click" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Content="^" Tag="Up" Height="80"></Button>
             <Button Click="Command_Click" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" Content="Mute" Tag="Mute"></Button>
-            <Button Click="Command_Click" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" Content="&lt;" Tag="Left"></Button>
-            <Button Click="Command_Click" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" Content="Enter" Tag="Enter"></Button>
-            <Button Click="Command_Click" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" Content="&gt;" Tag="Right"></Button>
+            <Button Click="Command_Click" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" Content="&lt;" Tag="Left" Height="80"></Button>
+            <Button Click="Command_Click" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" Content="Enter" Tag="Enter" Height="80"></Button>
+            <Button Click="Command_Click" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" Content="&gt;" Tag="Right" Height="80"></Button>
             <Button Click="Command_Click" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" Content="Exit" Tag="Exit"></Button>
-            <Button Click="Command_Click" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" Content="^" Tag="Down" RenderTransformOrigin="0.5,0.5">
+            <Button Click="Command_Click" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" Content="^" Tag="Down" Height="80" RenderTransformOrigin="0.5,0.5">
                 <Button.RenderTransform>
                     <CompositeTransform ScaleY="-1"/>
                 </Button.RenderTransform>
             </Button>
             <Button Click="Command_Click" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" Content="Return" Tag="Return"></Button>
-            
-            <GridView Margin="10 10 10 10" Name="view" IsItemClickEnabled="True"
-                      Grid.ColumnSpan="3" Grid.Row="4">
-                <GridView.ItemContainerStyle>
-                    <Style TargetType="FrameworkElement">
-                        <Setter Property="Margin" Value="0 0 20 0"/>
-                    </Style>
-                </GridView.ItemContainerStyle>
-            </GridView>
+
+            <Button Background="#FFD63030" Click="Command_Click" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center" Content="Netflix" Tag="Netflix"></Button>
+            <Button Background="#FF2ABD3E" Click="Command_Click" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" Content="Hulu" Tag="Hulu"></Button>
+            <Button Background="#FF2AA4B0" Click="Command_Click" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Center" Content="Pandora" Tag="Youtube"></Button>
+            <Button Background="#FFC1C1C1" Click="Command_Click" Grid.Column="0" Grid.Row="5" HorizontalAlignment="Center" Content="Youtube" Tag="Youtube"></Button>
+
+            <Button Click="Command_Click" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" Content="TV" Tag="TV"></Button>
+            <Button Click="Command_Click" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Center" Content="Bluray" Tag="Bluray"></Button>
+            <Button Click="Command_Click" Grid.Column="0" Grid.Row="6" HorizontalAlignment="Center" Content="Xbox" Tag="Xbox"></Button>
+            <Button Click="Command_Click" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Center" Content="Chrome" Tag="Chrome"></Button>
         </Grid>
 
         <!--<StackPanel Orientation="Vertical">

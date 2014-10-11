@@ -70,48 +70,6 @@ namespace Sharpoller
             {
                 nameCommandMap.Add(nameCommandPair.Item1, nameCommandPair.Item2.Split(':')[0]);
             }
-
-            HashSet<string> existingCommands = new HashSet<string>();
-            this.AddCommands(grid.Children, existingCommands);
-
-            ObservableCollection<Button> buttons = new ObservableCollection<Button>();
-            for (int i = 0; i < commands.Count; i++)
-            {
-                if (existingCommands.Contains(commands[i].Item1))
-                {
-                    continue;
-                }
-
-                Button b = new Button();
-                b.Content = commands[i].Item1;
-                b.Tag = commands[i].Item1;
-                b.MinWidth = 120;
-                b.Click += Command_Click;
-
-                string[] commandParts = commands[i].Item2.Split(':');
-                if (commandParts.Length >= 2)
-                {
-                    b.Background = new SolidColorBrush(ColorFromHex(commandParts[1]));
-                }
-                
-                buttons.Add(b);
-            }
-            view.ItemsSource = buttons;
-        }
-
-        private void AddCommands(UIElementCollection collection, HashSet<string> existingCommands)
-        {
-            foreach (UIElement item in collection)
-            {
-                if (item is Panel)
-                {
-                    this.AddCommands(((Panel)item).Children, existingCommands);
-                }
-                else
-                {
-                    existingCommands.Add(((Control)item).Tag as string);
-                }
-            }
         }
 
         private async void StartRecognizing_Click(object sender, RoutedEventArgs e)
@@ -168,11 +126,6 @@ namespace Sharpoller
                 clientSocket = null;
             }
         }
-
-        //private async void Send_Click(object sender, RoutedEventArgs e)
-        //{
-        //    await SendData(SendText.Text);
-        //}
 
         /// <summary>
         /// Invoked when this page is about to be displayed in a Frame.
