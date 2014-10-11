@@ -35,11 +35,11 @@ namespace Sharpoller
         TupleList<string, string> commands = new TupleList<string, string>() 
         { 
             { "On", "POWR1" },
-            //{ "Off", "POWR0" },
+            { "Off", "POWR0" },
             { "Netflix", "RCKY59:#FFD63030" },
-            { "Hulu", "RCKY55:#FF2ABD3E" },
-            { "Pandora", "RCKY56:#FF2AA4B0" },
-            { "Youtube", "RCKY57:#FFC1C1C1" },
+            //{ "Hulu", "RCKY55:#FF2ABD3E" },
+            //{ "Pandora", "RCKY56:#FF2AA4B0" },
+            //{ "Youtube", "RCKY57:#FFC1C1C1" },
             { "Smart", "RCKY39" },
             { "Mute", "VOLM000" },
             { "Return", "RCKY45" },
@@ -50,6 +50,9 @@ namespace Sharpoller
             { "Down", "RCKY42" },
             { "Left", "RCKY43" },
             { "Right", "RCKY44" },
+            { "Bluray", "IAVD1" },
+            { "Xbox", "IAVD2" },
+            { "Chrome", "IAVD3" },
         };
 
         Dictionary<string, string> nameCommandMap = new Dictionary<string, string>();
@@ -68,10 +71,7 @@ namespace Sharpoller
             }
 
             HashSet<string> existingCommands = new HashSet<string>();
-            foreach (UIElement item in grid.Children)
-            {
-                existingCommands.Add(((Control)item).Tag as string);
-            }
+            this.AddCommands(grid.Children, existingCommands);
 
             ObservableCollection<Button> buttons = new ObservableCollection<Button>();
             for (int i = 0; i < commands.Count; i++)
@@ -96,6 +96,21 @@ namespace Sharpoller
                 buttons.Add(b);
             }
             view.ItemsSource = buttons;
+        }
+
+        private void AddCommands(UIElementCollection collection, HashSet<string> existingCommands)
+        {
+            foreach (UIElement item in collection)
+            {
+                if (item is Panel)
+                {
+                    this.AddCommands(((Panel)item).Children, existingCommands);
+                }
+                else
+                {
+                    existingCommands.Add(((Control)item).Tag as string);
+                }
+            }
         }
 
         private async void StartRecognizing_Click(object sender, RoutedEventArgs e)

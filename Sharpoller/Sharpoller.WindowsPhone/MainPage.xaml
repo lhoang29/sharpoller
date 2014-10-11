@@ -22,10 +22,18 @@
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <Button Click="Command_Click" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" Content="Power" Tag="On" Background="#FFC54B4B"></Button>
+            <Grid Grid.Column="0" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Click="Command_Click" Grid.Column="0" HorizontalAlignment="Center" Content="On" Tag="On" Background="#FF44C144" Width="60" MinWidth="10"></Button>
+                <Button Click="Command_Click" Grid.Column="1" HorizontalAlignment="Center" Content="Off" Tag="Off" Background="#FFC54B4B" Width="60" MinWidth="10"></Button>
+            </Grid>
             <Button Click="Command_Click" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" Content="Menu" Tag="Menu"></Button>
             <Button Click="Command_Click" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" Content="Smart" Tag="Smart"></Button>
             <Button Click="Command_Click" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Content="^" Tag="Up"></Button>
+            <Button Click="Command_Click" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" Content="Mute" Tag="Mute"></Button>
             <Button Click="Command_Click" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" Content="&lt;" Tag="Left"></Button>
             <Button Click="Command_Click" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" Content="Enter" Tag="Enter"></Button>
             <Button Click="Command_Click" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" Content="&gt;" Tag="Right"></Button>
@@ -37,7 +45,7 @@
             </Button>
             <Button Click="Command_Click" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" Content="Return" Tag="Return"></Button>
             
-            <GridView Name="view" IsItemClickEnabled="True"
+            <GridView Margin="10 10 10 10" Name="view" IsItemClickEnabled="True"
                       Grid.ColumnSpan="3" Grid.Row="4">
                 <GridView.ItemContainerStyle>
                     <Style TargetType="FrameworkElement">
