@@ -127,9 +127,9 @@ namespace Sharpoller
         {
             for (int i = 0; i < Commands.Count; i++)
             {
-                if (speechCommand.ToLower().Contains(Commands[i].Item1))
+                if (speechCommand.ToLower().Contains(Commands[i].Item1.ToLower()))
                 {
-                    await ExecuteCommand(Commands[i].Item2);
+                    await ExecuteCommand(this.FormatCommand(NameCommandMap[Commands[i].Item1]));
                     break;
                 }
             }
@@ -137,7 +137,12 @@ namespace Sharpoller
 
         public async System.Threading.Tasks.Task ExecuteTextCommand(string command)
         {
-            await this.ExecuteCommand(NameCommandMap[command].PadRight(8, ' '));
+            await this.ExecuteCommand(this.FormatCommand(NameCommandMap[command]));
+        }
+
+        private string FormatCommand(string command)
+        {
+            return command.PadRight(8, ' ');
         }
     }
 }

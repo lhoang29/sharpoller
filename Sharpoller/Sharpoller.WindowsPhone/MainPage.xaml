@@ -50,33 +50,33 @@
 
             <Button Background="#FFD63030" Click="Command_Click" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center" Content="Netflix" Tag="Netflix"></Button>
             <Button Background="#FF2ABD3E" Click="Command_Click" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" Content="Hulu" Tag="Hulu"></Button>
-            <Button Background="#FF2AA4B0" Click="Command_Click" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Center" Content="Pandora" Tag="Youtube"></Button>
+            <Button Background="#FF2AA4B0" Click="Command_Click" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Center" Content="Pandora" Tag="Pandora"></Button>
             <Button Background="#FFC1C1C1" Click="Command_Click" Grid.Column="0" Grid.Row="5" HorizontalAlignment="Center" Content="Youtube" Tag="Youtube"></Button>
 
             <Button Click="Command_Click" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" Content="TV" Tag="TV"></Button>
             <Button Click="Command_Click" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Center" Content="Bluray" Tag="Bluray"></Button>
             <Button Click="Command_Click" Grid.Column="0" Grid.Row="6" HorizontalAlignment="Center" Content="Xbox" Tag="Xbox"></Button>
             <Button Click="Command_Click" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Center" Content="Chrome" Tag="Chrome"></Button>
+            
+            <Button Click="StartRecognizing_Click" Grid.Column="1" Grid.Row="7" Margin="0 0 0 10"
+                    VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Speak" 
+                    Background="White" Foreground="Black" MinWidth="0" Width="100" Height="100">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Ellipse Stroke="Black" StrokeThickness="2">
+                                <Ellipse.Fill>
+                                    <SolidColorBrush Color="LightGray"></SolidColorBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <ContentPresenter 
+                                Foreground="#FF101010"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
         </Grid>
-
-        <!--<StackPanel Orientation="Vertical">
-            -->
-        <!--<Button x:Name="ConnectButton" Content="Connect" Click="Connect_Click" FontSize="30" HorizontalAlignment="Center"/>-->
-        <!--
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Command:" FontSize="24" VerticalAlignment="Center"/>
-                <TextBox x:Name="SendText" Text="VOLM010 " FontSize="24" VerticalAlignment="Center"  />
-                <Button Content="Send" Click="Send_Click" FontSize="24" VerticalAlignment="Center" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Content="On" Click="PowerOn_Click" FontSize="30"/>
-                <Button Content="Off" Click="PowerOff_Click" FontSize="30"/>
-                <Button Content="Netflix" Click="Netflix_Click" FontSize="30"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Content="Mute" Click="Mute_Click" FontSize="30"/>
-            </StackPanel>
-            <Button HorizontalAlignment="Center" x:Name="SpeakButton" Content="Speak" Click="StartRecognizing_Click" FontSize="30" Margin="145,0,146,0"/>
-        </StackPanel>-->
     </Grid>
 </Page>
