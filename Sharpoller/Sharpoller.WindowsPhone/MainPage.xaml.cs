@@ -70,15 +70,5 @@ namespace Sharpoller
         {
             await commander.ExecuteTextCommand(((Control)sender).Tag as string);
         }
-
-        private static Color ColorFromHex(string hexaColor)
-        {
-            return Color.FromArgb(
-                Convert.ToByte(hexaColor.Substring(1, 2), 16),
-                Convert.ToByte(hexaColor.Substring(3, 2), 16),
-                Convert.ToByte(hexaColor.Substring(5, 2), 16),
-                Convert.ToByte(hexaColor.Substring(7, 2), 16)
-            );
-        }
     }
 }
