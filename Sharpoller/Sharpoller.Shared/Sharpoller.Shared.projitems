@@ -15,6 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Commander.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TupleList.cs" />
   </ItemGroup>
 </Project>

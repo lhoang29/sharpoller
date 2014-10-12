@@ -27,49 +27,13 @@ namespace Sharpoller
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private StreamSocket clientSocket;
-        private HostName serverHost;
-        private bool connected = false;
-        private bool closing = false;
-
-        TupleList<string, string> commands = new TupleList<string, string>() 
-        { 
-            { "On", "POWR1" },
-            { "Off", "POWR0" },
-            { "Netflix", "RCKY59:#FFD63030" },
-            { "Hulu", "RCKY55:#FF2ABD3E" },
-            { "Pandora", "RCKY56:#FF2AA4B0" },
-            { "Youtube", "RCKY57:#FFC1C1C1" },
-            { "Smart", "RCKY39" },
-            { "Mute", "VOLM000" },
-            { "Return", "RCKY45" },
-            { "Exit", "RCKY46" },
-            { "Menu", "RCKY38" },
-            { "Enter", "RCKY40" },
-            { "Up", "RCKY41" },
-            { "Down", "RCKY42" },
-            { "Left", "RCKY43" },
-            { "Right", "RCKY44" },
-            { "TV", "ITVD0" },
-            { "Bluray", "IAVD1" },
-            { "Xbox", "IAVD2" },
-            { "Chrome", "IAVD3" },
-        };
-
-        Dictionary<string, string> nameCommandMap = new Dictionary<string, string>();
+        private Commander commander = new Commander();
 
         public MainPage()
         {
             this.InitializeComponent();
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
-
-            clientSocket = new StreamSocket();
-
-            foreach (Tuple<string, string> nameCommandPair in commands)
-            {
-                nameCommandMap.Add(nameCommandPair.Item1, nameCommandPair.Item2.Split(':')[0]);
-            }
         }
 
         private async void StartRecognizing_Click(object sender, RoutedEventArgs e)
@@ -83,48 +47,7 @@ namespace Sharpoller
             // Start recognition.
             Windows.Media.SpeechRecognition.SpeechRecognitionResult speechRecognitionResult = await speechRecognizer.RecognizeWithUIAsync();
 
-            for (int i = 0; i < commands.Count; i++)
-            {
-                if (speechRecognitionResult.Text.ToLower().Contains(commands[i].Item1))
-                {
-                    await this.ExecuteCommand(commands[i].Item2);
-                    break;
-                }
-            }
-        }
-
-        private async void Connect_Click(object sender, RoutedEventArgs e)
-        {
-            await InitializeConnection();
-        }
-
-        private async System.Threading.Tasks.Task InitializeConnection()
-        {
-            try
-            {
-                serverHost = new HostName("10.0.0.7");
-                // Try to connect to the 
-                await clientSocket.ConnectAsync(serverHost, "10002");
-                connected = true;
-
-                await SendData("lhoang\rhphan");
-            }
-            catch (Exception exception)
-            {
-                // If this is an unknown status, 
-                // it means that the error is fatal and retry will likely fail.
-                if (SocketError.GetStatus(exception.HResult) == SocketErrorStatus.Unknown)
-                {
-                    throw;
-                }
-
-                // Could retry the connection, but for this simple example
-                // just close the socket.
-                closing = true;
-                // the Close method is mapped to the C# Dispose
-                clientSocket.Dispose();
-                clientSocket = null;
-            }
+            await commander.ExecuteVoiceCommand(speechRecognitionResult.Text);
         }
 
         /// <summary>
@@ -143,53 +66,9 @@ namespace Sharpoller
             // this event is handled for you.
         }
 
-        private async System.Threading.Tasks.Task SendData(string command)
-        {
-            try
-            {
-                if (!connected)
-                {
-                    await InitializeConnection();
-                }
-                // add a newline to the text to send
-                string sendData = command + "\r";
-                DataWriter writer = new DataWriter(clientSocket.OutputStream);
-                //writer.WriteUInt32(writer.MeasureString(sendData)); // Gets the UTF-8 string length.
-                writer.WriteString(sendData);
-
-                // Call StoreAsync method to store the data to a backing stream
-                await writer.StoreAsync();
-
-                // detach the stream and close it
-                writer.DetachStream();
-                writer.Dispose();
-
-            }
-            catch (Exception exception)
-            {
-                // If this is an unknown status, 
-                // it means that the error is fatal and retry will likely fail.
-                if (SocketError.GetStatus(exception.HResult) == SocketErrorStatus.Unknown)
-                {
-                    throw;
-                }
-
-                // Could retry the connection, but for this simple example
-                // just close the socket.
-                closing = true;
-                clientSocket.Dispose();
-                clientSocket = null;
-                connected = false;
-            }
-        }
-        private async System.Threading.Tasks.Task ExecuteCommand(string command)
-        {
-            await SendData(command);
-        }
-
         private async void Command_Click(object sender, RoutedEventArgs e)
         {
-            await this.ExecuteCommand(nameCommandMap[((Control)sender).Tag as string].PadRight(8, ' '));
+            await commander.ExecuteTextCommand(((Control)sender).Tag as string);
         }
 
         private static Color ColorFromHex(string hexaColor)
